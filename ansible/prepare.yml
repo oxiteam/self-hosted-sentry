@@ -24,5 +24,3 @@
         version: master
         key_file: ~/.ssh/github
         accept_hostkey: true
-    - name: run sentry install
-      ansible.builtin.command: /temp/repositories/install.sh
