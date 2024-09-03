@@ -1,0 +1,28 @@
+- name: install prometheus node_exporter on sentry host
+  hosts: sentry
+  roles:
+    - { role: prometheus.prometheus.node_exporter }
+
+- name: install git and download senty repository
+  hosts: sentry
+  tasks:
+    - name: install git
+      ansible.builtin.apt:
+        pkg:
+          - git
+        state: latest
+        update_cache: true
+    - name: copy git key
+      ansible.builtin.copy:
+        src: git.key.pem
+        dest: ~/.ssh/github
+        mode: '0600'
+    - name: git checkout
+      ansible.builtin.git:
+        repo: 'git@github.com:oxiteam/self-hosted-sentry.git'
+        dest: /temp/repositories/
+        version: master
+        key_file: ~/.ssh/github
+        accept_hostkey: true
+    - name: run sentry install
+      ansible.builtin.command: /temp/repositories/install.sh
