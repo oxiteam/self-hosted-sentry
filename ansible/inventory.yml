@@ -1,0 +1,18 @@
+ungrouped:
+  hosts:
+    localhost:
+  vars:
+    ansible_connection: local
+
+bastion:
+  hosts:
+    5.35.9.242:
+  vars:
+    ansible_ssh_user: root
+
+sentry:
+  hosts:
+    192.168.0.251:
+  vars:
+    ansible_ssh_common_args: '-o ProxyCommand="ssh -i ./host.key.pem -W %h:%p -q root@5.35.9.242"'
+    ansible_ssh_user: root
