@@ -20,7 +20,7 @@
     - name: git checkout
       ansible.builtin.git:
         repo: 'git@github.com:oxiteam/self-hosted-sentry.git'
-        dest: /temp/repositories/
+        dest: /self-hosted-sentry
         version: master
         key_file: ~/.ssh/github
         accept_hostkey: true
