@@ -21,7 +21,7 @@
       ansible.builtin.git:
         repo: 'git@github.com:oxiteam/self-hosted-sentry.git'
         dest: /self-hosted-sentry
-        version: master
+        version: deploy
         key_file: ~/.ssh/github
         accept_hostkey: true
 - name: install docker
